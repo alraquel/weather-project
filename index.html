@@ -36,6 +36,9 @@
       #temperature {
         font-size: 40px;
         text-align: center;
+        line-height: 1;
+        font-weight: 400;
+        padding-right: 30px;
       }
 
       #sunny {
@@ -49,8 +52,10 @@
 
       .units {
         text-align: center;
+        position: relative;
         font-size: 16px;
-        top: -30px;
+        top: -32px;
+        padding-left: 75px;
       }
 
       li {
@@ -109,14 +114,18 @@
 
       <p id="sunny"></p>
 
-      <p id="temperature"></p>
+      <div class="row">
+        <div class="clearfix">
+          <span id="temperature"></span>
+        </div>
 
-      <p>
-        <span class="units">
-          <a href="#" id="celsius-link"> ºC</a>
-          | <a href="#" id="fahrenheit-link">ºF</a>
-        </span>
-      </p>
+        <div class="float-right">
+          <span class="units">
+            <a href="#" id="celsius-link"> ºC</a>
+            | <a href="#" id="fahrenheit-link">ºF</a>
+          </span>
+        </div>
+      </div>
 
       <ul>
         <li>Humidity: <span id="humidity"></span>%</li>
