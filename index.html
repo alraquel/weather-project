@@ -46,6 +46,12 @@
         padding: 0;
       }
 
+      .units {
+        position: relative;
+        font-size: 16px;
+        top: -34px;
+      }
+
       li {
         list-style: none;
         margin: 0;
@@ -103,7 +109,10 @@
       <p id="sunny"></p>
 
       <p id="temperature">
-        <span class="units"> ºC | <a href="#">ºF</a> </span>
+        <span class="units">
+          <a href="#" id="celsius-link"> ºC</a>
+          | <a href="#" id="fahrenheit-link">ºF</a>
+        </span>
       </p>
 
       <ul>
@@ -198,6 +207,9 @@
         document.querySelector("#temperature").innerHTML = Math.round(
           response.data.main.temp
         );
+
+        celsiusTemperature = response.data.main.temp;
+
         let sunnyElement = document.querySelector("#sunny");
         sunnyElement.innerHTML = response.data.weather[0].description;
         let humidityElement = document.querySelector("#humidity");
@@ -211,6 +223,27 @@
           `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
         );
       }
+
+      function displayFahrenheitTemperature(event) {
+        event.preventDefault();
+        let temperatureElement = document.querySelector("#temperature");
+        let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+        temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+      }
+
+      function displayCelsiusTemperature(event) {
+        event.preventDefault();
+        let temperatureElement = document.querySelector("#temperature");
+        temperatureElement.innerHTML = Math.round(celsiusTemperature);
+      }
+
+      let celsiusTemperature = null;
+
+      let fahrenheitLink = document.querySelector("#fahrenheit-link");
+      fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+      let celsiusLink = document.querySelector("#celsius-link");
+      celsiusLink.addEventListener("click", displayCelsiusTemperature);
     </script>
   </body>
 </html>
