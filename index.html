@@ -73,6 +73,12 @@
         text-transform: capitalize;
       }
 
+      .forecast {
+        margin-top: 20px;
+        text-align: center;
+        color: #000;
+      }
+
       .coded {
         text-align: center;
       }
@@ -134,38 +140,9 @@
 
       <p class="day"></p>
 
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <strong> Saturday</strong> <br />
-            ☀ <br />
-            32º / 26º
-          </div>
-
-          <div class="col">
-            <strong> Sunday </strong><br />
-            ☀ <br />
-            30º / 24º
-          </div>
-          <div class="col">
-            <strong> Monday </strong><br />
-            ☀ <br />
-            33º / 27º
-          </div>
-          <div class="col">
-            <strong> Tuesday </strong><br />
-            ☀ <br />
-            29º / 23º
-          </div>
-          <div class="col">
-            <strong> Wednesday </strong>
-            <br />
-            ☀ <br />
-            30º / 25º
-          </div>
-        </div>
-      </div>
+      <div class="forecast" id="forecast"></div>
     </div>
+
     <p class="coded">
       <a href="https://github.com/alraquel"> Coded</a>
       by Raquel
@@ -256,6 +233,35 @@
 
       let celsiusLink = document.querySelector("#celsius-link");
       celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+      function displayForecast() {
+        let forecastElement = document.querySelector("#forecast");
+        let days = ["Tue", "Wed", "Thu"];
+        let forecastHTML = `<div class="row">`;
+        days.forEach(function (day) {
+          forecastHTML =
+            forecastHTML +
+            `  <div class="col">
+              
+            <div class="forecast">${day}</div>
+            <img
+              src="http://openweathermap.org./img/wn/50d@2x.png"
+              width="
+            42"
+            />
+            <div class="weather-forecast-temperature">
+              <span class="weather-forecast-temperature-max"> 18º |</span>
+              <span class="weather-forecast-temperature-min"> 12º</span>
+            </div>
+          </div>
+        
+      `;
+        });
+
+        forecastHTML = forecastHTML + `</div>`;
+        forecastElement.innerHTML = forecastHTML;
+      }
+      displayForecast();
     </script>
   </body>
 </html>
